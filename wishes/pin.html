@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enter PIN</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ff758c,#ff7eb3,#ffd3a5);
+    overflow:hidden;
+}
+
+/* Glass Box */
+.box{
+    width:320px;
+    padding:25px;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(12px);
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+    transition:0.3s;
+}
+
+/* Shake animation */
+.shake{
+    animation:shake 0.4s;
+}
+
+@keyframes shake{
+    0%,100%{transform:translateX(0);}
+    25%{transform:translateX(-10px);}
+    50%{transform:translateX(10px);}
+    75%{transform:translateX(-10px);}
+}
+
+h2{
+    color:white;
+    margin-bottom:15px;
+}
+
+/* PIN dots */
+#display{
+    font-size:30px;
+    letter-spacing:10px;
+    color:white;
+    margin-bottom:20px;
+}
+
+/* Buttons */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+
+button{
+    padding:15px;
+    font-size:20px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    background:white;
+    color:#ff4081;
+    transition:0.2s;
+}
+
+button:active{
+    transform:scale(0.9);
+}
+
+/* Unlock animation */
+.unlock{
+    animation:pop 0.6s;
+}
+
+@keyframes pop{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.2);}
+    100%{transform:scale(0);}
+}
+</style>
+
+</head>
+<body>
+
+<div class="box" id="box">
+
+<h2>Enter Secret PIN ❤️</h2>
+
+<div id="display"></div>
+
+<div class="grid">
+<button onclick="press(1)">1</button>
+<button onclick="press(2)">2</button>
+<button onclick="press(3)">3</button>
+<button onclick="press(4)">4</button>
+<button onclick="press(5)">5</button>
+<button onclick="press(6)">6</button>
+<button onclick="press(7)">7</button>
+<button onclick="press(8)">8</button>
+<button onclick="press(9)">9</button>
+<button onclick="clearPin()">C</button>
+<button onclick="press(0)">0</button>
+<button onclick="checkPin()">✔</button>
+</div>
+
+</div>
+
+<script>
+
+let pin="";
+
+function press(num){
+    if(pin.length < 4){
+        pin += num;
+        update();
+    }
+}
+
+function update(){
+    document.getElementById("display").innerHTML="❤".repeat(pin.length);
+}
+
+function clearPin(){
+    pin="";
+    update();
+}
+
+function checkPin(){
+
+if(pin==="2025"){
+
+    document.getElementById("box").classList.add("unlock");
+
+    setTimeout(()=>{
+        window.location.href="loading.html";
+    },600);
+
+}else{
+
+    let box=document.getElementById("box");
+    box.classList.add("shake");
+
+    setTimeout(()=>{
+        box.classList.remove("shake");
+    },400);
+
+    pin="";
+    update();
+
+    alert("Wrong PIN ❌ Try again ❤️");
+}
+
+}
+
+</script>
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loading Memories</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+background:linear-gradient(135deg,#111,#222,#000);
+color:white;
+overflow:hidden;
+}
+
+/* Heart */
+.heart{
+font-size:90px;
+color:#ff4081;
+animation:beat 1s infinite;
+}
+
+@keyframes beat{
+0%,100%{transform:scale(1);}
+50%{transform:scale(1.3);}
+}
+
+/* Text */
+h2{
+margin-top:20px;
+font-size:24px;
+letter-spacing:1px;
+}
+
+/* Progress Bar */
+.bar{
+width:250px;
+height:10px;
+background:#333;
+border-radius:20px;
+margin-top:25px;
+overflow:hidden;
+}
+
+.fill{
+height:100%;
+width:0%;
+background:linear-gradient(90deg,#ff4081,#ff80ab);
+animation:load 3s forwards;
+}
+
+/* Animation fill */
+@keyframes load{
+0%{width:0%;}
+100%{width:100%;}
+}
+
+/* small glow */
+.glow{
+animation:glow 1s infinite;
+}
+
+@keyframes glow{
+0%,100%{text-shadow:0 0 10px #ff4081;}
+50%{text-shadow:0 0 25px #ff4081;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="heart">❤️</div>
+
+<h2 class="glow">Loading Memories...</h2>
+
+<div class="bar">
+<div class="fill"></div>
+</div>
+
+<script>
+
+setTimeout(()=>{
+window.location.href="gift.html";
+},3200);
+
+</script>
+
+</body>
+</html>
